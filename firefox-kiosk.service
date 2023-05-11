@@ -1,0 +1,13 @@
+[Unit]
+Description=Firefox Kiosk Mode
+Wants=graphical.target
+After=multi-user.target
+
+[Service]
+User=tv
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/firefox --no-remote -P "kiosk" -kiosk "https://zabbix.com"
+ExecStartPost=/usr/bin/xdotool key Escape
+
+[Install]
+WantedBy=graphical.target
